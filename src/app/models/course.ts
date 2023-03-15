@@ -1,4 +1,4 @@
-import { Meta } from "@angular/platform-browser";
+import { Meta } from "./meta";
 import { Lesson } from "./lesson";
 
 export class Course {
@@ -13,6 +13,6 @@ export class Course {
     previewImageLink: string;
     rating: number;
     meta: Meta;
-    lessons: Lesson;
+    lessons: Lesson[];
     containsLockedLessons: boolean;
 }

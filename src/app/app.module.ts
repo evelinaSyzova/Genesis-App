@@ -13,10 +13,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CourseComponent } from './course/course.component';
-
-
+import { HeaderComponent } from './header/header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
-  declarations: [AppComponent, CoursesComponent, CardComponent, CourseComponent],
+  declarations: [
+    AppComponent,
+    CoursesComponent,
+    CardComponent,
+    CourseComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,13 +36,18 @@ import { CourseComponent } from './course/course.component';
     MatCardModule,
     MatButtonModule,
     MatPaginatorModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatChipsModule,
+    CdkAccordionModule,
+    MatExpansionModule,
   ],
   providers: [
     {
-      provide : HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi   : true,
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
