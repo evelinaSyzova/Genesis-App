@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from './servises/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Genesis-App';
+  constructor(public loadingService: LoadingService){
+  }
 }

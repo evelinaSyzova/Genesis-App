@@ -4,6 +4,7 @@ import { Course } from '../models/course';
 import { CourseService } from '../servises/course.service';
 import { merge, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -15,16 +16,12 @@ export class CoursesComponent implements OnInit {
   pagedCourses: Course[];
   breakpoint: number = 2;
   length: number;
-  constructor(private courseService: CourseService) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getAllCourses();
-  }
-
-  getAllCourses() {
-    this.courseService.getCourses().subscribe((response) => {
-      this.allCourses = response.courses;
-      this.pagedCourses = this.paginate(0,10);
+    this.activatedRoute.data.subscribe(({ courses }) => {
+      this.allCourses = courses;
+      this.pagedCourses = this.paginate(0, 10);
       this.length = this.allCourses.length;
     });
   }

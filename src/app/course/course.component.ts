@@ -11,19 +11,12 @@ import { CourseService } from '../servises/course.service';
 export class CourseComponent implements OnInit{
   course: Course;
   constructor(
-    private activatedRoute: ActivatedRoute, 
-    private courseService: CourseService){}
+    private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    let courseId = this.activatedRoute.snapshot.paramMap.get('courseId');
-    if (courseId){
-      this.getCourse(courseId);
-    }
+    this.activatedRoute.data.subscribe(({course}) => {
+        this.course = course;
+    })
   }
 
-  getCourse(courseId:string){
-    this.courseService.getCourse(courseId).subscribe(res => {
-        this.course = res;
-      });
-  }
 }

@@ -14,7 +14,7 @@ export class CourseService {
     let coursesUrl: string = `${environment.host}/${environment.version}/core/preview-courses`; 
     return this.http.get<{courses: Course[]}>(coursesUrl);
   }
-  getCourse(courseId: string){
+  getCourse(courseId: string| null){
     let courseUrl: string = `${environment.host}/${environment.version}/core/preview-courses/${courseId}`; 
     return this.http.get<Course>(courseUrl);
   }

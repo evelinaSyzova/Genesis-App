@@ -16,9 +16,11 @@ import { CourseComponent } from './course/course.component';
 import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatChipsModule} from '@angular/material/chips';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,12 +43,17 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatChipsModule,
     CdkAccordionModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+    },
+    { provide: HTTP_INTERCEPTORS, 
+      useClass: LoadingInterceptor, 
+      multi: true 
     },
   ],
   bootstrap: [AppComponent],
