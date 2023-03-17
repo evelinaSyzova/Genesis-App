@@ -10,4 +10,14 @@ import { Course } from 'src/app/models/course';
 export class CardComponent {
   @Input()
   course: Course;
+  isHover = false;
+
+  onOver(){
+    this.isHover = true;
+    console.log('sdfghjkl;lkjhgfd');
+  }
+
+  onOut(){
+    this.isHover = false;
+  }
 }

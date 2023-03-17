@@ -1,18 +1,33 @@
-<mat-card>
-    
-    <mat-card-content><img src="{{course.previewImageLink + '/cover.webp'}}" alt="{{course.title}} image"></mat-card-content>
-    <mat-card-title>{{course.title}}</mat-card-title>
-    <mat-card-content><p>Lessons` count: {{course.lessonsCount}}</p> <p>Rating: {{course.rating}}</p> 
-      Skills:
-      <mat-chip-listbox>
-        <mat-chip *ngFor="let skill of course.meta.skills">
-          {{skill}}
-        </mat-chip>
-      </mat-chip-listbox>
-
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button [routerLink]="['/course', course.id]">Details</button>
-      </mat-card-actions>
+<mat-card [routerLink]="['/course', course.id]" (mouseover) = "onOver()" (mouseout) = "onOut()">
+  <ng-template [ngIf]="!isHover"
+    ><img
+      src="{{ course.previewImageLink + '/cover.webp' }}"
+      alt="{{ course.title }} image"
+  /></ng-template>
+  <ng-template [ngIf]="isHover">
+    <vg-player>
+      <video
+        [vgHls]="course.meta.courseVideoPreview.link"
+        id=""
+        type="application/x-mpegURL"
+        poster="{{
+          course.meta.courseVideoPreview.previewImageLink + '/preview.webp'
+        }}"
+        autoplay
+        muted
+        controls
+      ></video>
+    </vg-player>
+  </ng-template>
+  <mat-card-title>{{ course.title }}</mat-card-title>
+  <mat-card-content
+    ><p>Lessons` count: {{ course.lessonsCount }}</p>
+    <p>Rating: {{ course.rating }}</p>
+    Skills:
+    <mat-chip-listbox>
+      <mat-chip *ngFor="let skill of course.meta.skills">
+        {{ skill }}
+      </mat-chip>
+    </mat-chip-listbox>
+  </mat-card-content>
 </mat-card>
-  
