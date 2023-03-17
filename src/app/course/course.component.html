@@ -1,40 +1,57 @@
-<h2>{{ course.title }}</h2>
-<p>About course: {{ course.description }}</p>
-<p>Duration: {{ course.duration }} hours</p>
-<p>Rating: {{ course.rating }}</p>
-Skills:
+<div class="card">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
+        <img
+          mat-card-xl-image
+          src="{{ course.previewImageLink + '/cover.webp' }}"
+          alt="{{ course.title }} image"
+        />
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Duration: {{ course.duration * 1000 | date:'mm:ss' }}</p>
+      <p>Rating: {{ course.rating }}</p>
+      Skills:
 
-<mat-chip-listbox>
-  <mat-chip *ngFor="let skill of course.meta.skills">
-    {{ skill }}
-  </mat-chip>
-</mat-chip-listbox>
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let skill of course.meta.skills">
+          {{ skill }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </mat-card-content>
+  </mat-card>
 
-<mat-accordion>
-  <mat-expansion-panel
-    *ngFor="let lesson of course.lessons"
-    [disabled]="lesson.status === 'locked'"
-  >
-    <mat-expansion-panel-header>
-      <mat-panel-title> {{ lesson.title }} </mat-panel-title>
-      <mat-panel-description *ngIf="lesson.status === 'unlocked'; else locked">
-        Duration: {{ lesson.duration }}
-      </mat-panel-description>
-      <ng-template #locked> Lesson is locked </ng-template>
-    </mat-expansion-panel-header>
-    <vg-player>
-      <video
-        #media
-        poster="{{
-          lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'
-        }}"
-        type="application/x-mpegURL"
-        #vgHls="vgHls"
-        [vgHls]="lesson.link"
-        id="singleVideo"
-        controls
-        crossorigin
-      ></video>
-    </vg-player>
-  </mat-expansion-panel>
-</mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel
+      *ngFor="let lesson of course.lessons"
+      [disabled]="lesson.status === 'locked'"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ lesson.title }} </mat-panel-title>
+        <mat-panel-description
+          *ngIf="lesson.status === 'unlocked'; else locked"
+        >
+          Duration: {{ lesson.duration * 1000 | date:'mm:ss' }}
+        </mat-panel-description>
+        <ng-template #locked> Lesson is locked </ng-template>
+      </mat-expansion-panel-header>
+      <vg-player>
+        <video
+          #media
+          poster="{{
+            lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'
+          }}"
+          type="application/x-mpegURL"
+          #vgHls="vgHls"
+          [vgHls]="lesson.link"
+          id="singleVideo"
+          controls
+          crossorigin
+        ></video>
+      </vg-player>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
