@@ -12,7 +12,7 @@
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-      <p>Duration: {{ course.duration * 1000 | date:'mm:ss' }}</p>
+      <p>Duration: {{ course.duration * 1000 | date : "mm:ss" }}</p>
       <p>Rating: {{ course.rating }}</p>
       Skills:
 
@@ -28,30 +28,34 @@
     <mat-expansion-panel
       *ngFor="let lesson of course.lessons"
       [disabled]="lesson.status === 'locked'"
+      (afterExpand)="saveProgress(lesson.id)"
+      [expanded]="this.courseProgress.lessonId === lesson.id"
     >
       <mat-expansion-panel-header>
         <mat-panel-title> {{ lesson.title }} </mat-panel-title>
         <mat-panel-description
           *ngIf="lesson.status === 'unlocked'; else locked"
         >
-          Duration: {{ lesson.duration * 1000 | date:'mm:ss' }}
+          Duration: {{ lesson.duration * 1000 | date : "mm:ss" }}
         </mat-panel-description>
         <ng-template #locked> Lesson is locked </ng-template>
       </mat-expansion-panel-header>
-      <vg-player>
-        <video
-          #media
-          poster="{{
-            lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'
-          }}"
-          type="application/x-mpegURL"
-          #vgHls="vgHls"
-          [vgHls]="lesson.link"
-          id="singleVideo"
-          controls
-          crossorigin
-        ></video>
-      </vg-player>
+      <ng-template matExpansionPanelContent>
+        <vg-player>
+          <video
+            #media
+            poster="{{
+              lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'
+            }}"
+            type="application/x-mpegURL"
+            #vgHls="vgHls"
+            [vgHls]="lesson.link"
+            id="singleVideo"
+            controls
+            crossorigin
+          ></video>
+        </vg-player>
+      </ng-template>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
