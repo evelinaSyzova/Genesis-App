@@ -11,23 +11,30 @@ Skills:
 </mat-chip-listbox>
 
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let lesson of course.lessons" [disabled]="lesson.status === 'locked'">
+  <mat-expansion-panel
+    *ngFor="let lesson of course.lessons"
+    [disabled]="lesson.status === 'locked'"
+  >
     <mat-expansion-panel-header>
       <mat-panel-title> {{ lesson.title }} </mat-panel-title>
       <mat-panel-description *ngIf="lesson.status === 'unlocked'; else locked">
         Duration: {{ lesson.duration }}
       </mat-panel-description>
-      <ng-template #locked>
-        Lesson is locked
-      </ng-template>
+      <ng-template #locked> Lesson is locked </ng-template>
     </mat-expansion-panel-header>
-    <img src="{{lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'}}" alt="Lessons` preview">
-    <!-- <video
-      poster="{{
-        lesson.previewImageLink + 'lesson-' + lesson.order + '.webp'
-      }}"
-    >
-      <source src="{{lesson.link}}" type="application/x-mpegURL" />
-    </video> -->
+    <vg-player>
+      <video
+        #media
+        poster="{{
+          lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'
+        }}"
+        type="application/x-mpegURL"
+        #vgHls="vgHls"
+        [vgHls]="lesson.link"
+        id="singleVideo"
+        controls
+        crossorigin
+      ></video>
+    </vg-player>
   </mat-expansion-panel>
 </mat-accordion>

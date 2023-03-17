@@ -21,6 +21,13 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { VgStreamingModule } from '@videogular/ngx-videogular/streaming';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +51,11 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     CdkAccordionModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    VgBufferingModule,
+    VgControlsModule,
+    VgCoreModule,
+    VgOverlayPlayModule,
+    VgStreamingModule,
   ],
   providers: [
     {
@@ -51,10 +63,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
       useClass: AuthInterceptor,
       multi: true,
     },
-    { provide: HTTP_INTERCEPTORS, 
-      useClass: LoadingInterceptor, 
-      multi: true 
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
