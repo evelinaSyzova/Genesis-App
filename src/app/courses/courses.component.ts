@@ -30,10 +30,16 @@ export class CoursesComponent implements OnInit {
     let startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
     this.pagedCourses = this.paginate(startIndex, endIndex);
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   onResize(event: any) {
-    this.breakpoint = event.target.innerWidth <= 800 ? 1 : 2;
+    this.breakpoint = event.target.innerWidth <= 1200 ? 1 : 2;
   }
   paginate(startIndex: number, endIndex: number): Course[] {
     if (endIndex > this.allCourses.length) {
@@ -41,4 +47,5 @@ export class CoursesComponent implements OnInit {
     }
     return this.allCourses.slice(startIndex, endIndex);
   }
+  
 }

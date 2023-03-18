@@ -1,8 +1,14 @@
-<mat-grid-list [cols]="breakpoint" rowHeight="1:1" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let course of pagedCourses"
-    ><app-card [course]="course"></app-card
-  ></mat-grid-tile>
-</mat-grid-list>
+<div class="content">
+  <mat-grid-list
+    [cols]="breakpoint"
+    rowHeight="4:3"
+    (window:resize)="onResize($event)"
+  >
+    <mat-grid-tile *ngFor="let course of pagedCourses"
+      ><app-card [course]="course"></app-card
+    ></mat-grid-tile>
+  </mat-grid-list>
+</div>
 <mat-paginator
   [length]="length"
   [pageSize]="10"

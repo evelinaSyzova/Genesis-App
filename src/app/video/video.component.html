@@ -1,0 +1,10 @@
+<video
+  #video
+  id="video"
+  [poster]="poster"
+  (timeupdate)="updateTime()"
+  autoplay="{{autoplay}}"
+  muted="{{muted}}"
+  [attr.controls]="controls? null: 'controls'"
+  crossorigin
+></video>

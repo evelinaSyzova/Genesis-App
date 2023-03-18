@@ -1,24 +1,20 @@
-<mat-card [routerLink]="['/course', course.id]" (mouseover) = "onOver()" (mouseout) = "onOut()">
-  <ng-template [ngIf]="!isHover"
+<mat-card [routerLink]="['/course', course.id]">
+  <div (mouseover) = "onOver()" (mouseout) = "onOut()" class="image-container">
+    <ng-template [ngIf]="!isHover"
     ><img
       src="{{ course.previewImageLink + '/cover.webp' }}"
       alt="{{ course.title }} image"
   /></ng-template>
   <ng-template [ngIf]="isHover">
-    <vg-player>
-      <video
-        [vgHls]="course.meta.courseVideoPreview.link"
-        id=""
-        type="application/x-mpegURL"
-        poster="{{
-          course.meta.courseVideoPreview.previewImageLink + '/preview.webp'
-        }}"
-        autoplay
-        muted
-        controls
-      ></video>
-    </vg-player>
+    <app-video
+        [videoUrl]="course.meta.courseVideoPreview.link"
+        [poster]="course.meta.courseVideoPreview.previewImageLink + '/preview.webp'"
+        autoplay="true"
+        muted="true"
+        controls="false"
+        ></app-video>
   </ng-template>
+  </div>
   <mat-card-title>{{ course.title }}</mat-card-title>
   <mat-card-content
     ><p>Lessons` count: {{ course.lessonsCount }}</p>
