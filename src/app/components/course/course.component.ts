@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { Course } from '../models/course';
-import { CourseProgress } from '../models/courseProgress';
+import { Course } from '../../models/course';
+import { CourseProgress } from '../../models/courseProgress';
 
 @Component({
   selector: 'app-course',

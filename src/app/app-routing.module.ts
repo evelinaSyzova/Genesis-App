@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CourseComponent } from './course/course.component';
-import { CoursesComponent } from './courses/courses.component';
+import { CourseComponent } from './components/course/course.component';
+import { CoursesComponent } from './components/courses/courses.component';
 import { CourseResolver } from './resolvers/course.reselver';
 import { CoursesResolver } from './resolvers/courses.resolver';
 

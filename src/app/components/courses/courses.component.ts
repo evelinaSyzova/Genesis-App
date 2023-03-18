@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Course } from '../models/course';
+import { Course } from '../../models/course';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
