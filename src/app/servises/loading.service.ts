@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingService {
   private loading: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   setLoading(loading: boolean) {
     this.loading = loading;
@@ -16,5 +15,4 @@ export class LoadingService {
   getLoading(): boolean {
     return this.loading;
   }
-
 }

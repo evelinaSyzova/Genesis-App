@@ -1,19 +1,21 @@
 <mat-card [routerLink]="['/course', course.id]">
-  <div (mouseover) = "onOver()" (mouseout) = "onOut()" class="image-container">
+  <div (mouseover)="onOver()" (mouseout)="onOut()" class="image-container">
     <ng-template [ngIf]="!isHover"
-    ><img
-      src="{{ course.previewImageLink + '/cover.webp' }}"
-      alt="{{ course.title }} image"
-  /></ng-template>
-  <ng-template [ngIf]="isHover">
-    <app-video
+      ><img
+        src="{{ course.previewImageLink + '/cover.webp' }}"
+        alt="{{ course.title }} image"
+    /></ng-template>
+    <ng-template [ngIf]="isHover">
+      <app-video
         [videoUrl]="course.meta.courseVideoPreview.link"
-        [poster]="course.meta.courseVideoPreview.previewImageLink + '/preview.webp'"
+        [poster]="
+          course.meta.courseVideoPreview.previewImageLink + '/preview.webp'
+        "
         autoplay="true"
         muted="true"
         controls="false"
-        ></app-video>
-  </ng-template>
+      ></app-video>
+    </ng-template>
   </div>
   <mat-card-title>{{ course.title }}</mat-card-title>
   <mat-card-content

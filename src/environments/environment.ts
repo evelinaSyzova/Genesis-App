@@ -1,4 +1,4 @@
 export const environment = {
-    host: 'https://api.wisey.app',
-    version: 'api/v1',
-  };
+  host: 'https://api.wisey.app',
+  version: 'api/v1',
+};

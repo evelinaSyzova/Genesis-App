@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Course } from '../models/course';
-import { CourseService } from '../servises/course.service';
-import { merge, of } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -34,18 +31,18 @@ export class CoursesComponent implements OnInit {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 
   onResize(event: any) {
     this.breakpoint = event.target.innerWidth <= 1200 ? 1 : 2;
   }
+
   paginate(startIndex: number, endIndex: number): Course[] {
     if (endIndex > this.allCourses.length) {
       endIndex = this.allCourses.length;
     }
     return this.allCourses.slice(startIndex, endIndex);
   }
-  
 }

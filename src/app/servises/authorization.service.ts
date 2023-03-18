@@ -11,8 +11,8 @@ export class AuthorizationService {
 
   getToken() {
     let tokenUrl: string = `${environment.host}/${environment.version}/auth/anonymous?platform=subscriptions`;
-    return this.http.get<{ token: string }>(tokenUrl).pipe(
-      map((res) => res.token)
-    );
+    return this.http
+      .get<{ token: string }>(tokenUrl)
+      .pipe(map((res) => res.token));
   }
 }

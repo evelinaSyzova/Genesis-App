@@ -10,19 +10,18 @@ import { AuthorizationService } from '../servises/authorization.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authorizationService: AuthorizationService) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-
     if (!req.url.includes('/auth')) {
       let token = localStorage.getItem('token');
       if (!token) {
-        this.authorizationService.getToken().subscribe(tok =>{
+        this.authorizationService.getToken().subscribe((tok) => {
           localStorage.setItem('token', tok);
         });
       }
-
       req = req.clone({
         setHeaders: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -34,6 +33,4 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req);
   }
-
-  
 }

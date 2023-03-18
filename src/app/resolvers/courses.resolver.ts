@@ -16,6 +16,6 @@ export class CoursesResolver implements Resolve<Course[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Course[]> | Promise<Course[]> | Course[] {
-    return this.service.getCourses().pipe(map(res => res.courses));
+    return this.service.getCourses().pipe(map((res) => res.courses));
   }
 }

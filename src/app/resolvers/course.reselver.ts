@@ -19,4 +19,3 @@ export class CourseResolver implements Resolve<Course> {
     return this.service.getCourse(route.paramMap.get('courseId'));
   }
 }
-

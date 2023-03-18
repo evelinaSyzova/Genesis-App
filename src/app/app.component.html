@@ -1,5 +1,8 @@
 <app-header></app-header>
-<mat-progress-spinner *ngIf="this.loadingService.getLoading()" mode="indeterminate"></mat-progress-spinner>
+<mat-progress-spinner
+  *ngIf="this.loadingService.getLoading()"
+  mode="indeterminate"
+></mat-progress-spinner>
 <div class="container">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

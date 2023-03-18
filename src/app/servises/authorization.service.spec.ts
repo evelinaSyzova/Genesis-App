@@ -1,4 +1,7 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { AuthorizationService } from './authorization.service';
 import { environment } from 'src/environments/environment';
@@ -30,7 +33,9 @@ describe('AuthorizationService', () => {
 
     service.getToken();
 
-    const req = httpMock.expectOne(`${environment.host}/${environment.version}/auth/anonymous?platform=subscriptions`);
+    const req = httpMock.expectOne(
+      `${environment.host}/${environment.version}/auth/anonymous?platform=subscriptions`
+    );
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
 

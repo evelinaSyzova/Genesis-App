@@ -5,18 +5,21 @@
         <mat-card-title>{{ course.title }}</mat-card-title>
         <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
         <img
-        mat-card-xl-image
+          mat-card-xl-image
           src="{{ course.previewImageLink + '/cover.webp' }}"
           alt="{{ course.title }} image"
         />
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-      <p *ngIf="course.duration<=3600">Duration: {{ course.duration * 1000 | date : "mm:ss" }}</p>
-      <p *ngIf="course.duration>3600">Duration: {{ course.duration * 1000 | date : "hh:mm:ss":"UTC" }}</p>
+      <p *ngIf="course.duration <= 3600">
+        Duration: {{ course.duration * 1000 | date : "mm:ss" }}
+      </p>
+      <p *ngIf="course.duration > 3600">
+        Duration: {{ course.duration * 1000 | date : "hh:mm:ss" : "UTC" }}
+      </p>
       <p>Rating: {{ course.rating }}</p>
       Skills:
-
       <mat-chip-listbox>
         <mat-chip *ngFor="let skill of course.meta.skills">
           {{ skill }}
@@ -43,10 +46,16 @@
       </mat-expansion-panel-header>
       <ng-template matExpansionPanelContent>
         <app-video
-        [videoUrl]="lesson.link"
-        [poster]="lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'"
-        [startTime]="this.courseProgress.lessonId === lesson.id? this.courseProgress.currentTime: 0"
-        (currentTime)="saveProgress(lesson.id, $event)"
+          [videoUrl]="lesson.link"
+          [poster]="
+            lesson.previewImageLink + '/lesson-' + lesson.order + '.webp'
+          "
+          [startTime]="
+            this.courseProgress.lessonId === lesson.id
+              ? this.courseProgress.currentTime
+              : 0
+          "
+          (currentTime)="saveProgress(lesson.id, $event)"
         ></app-video>
       </ng-template>
     </mat-expansion-panel>
